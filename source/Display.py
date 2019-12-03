@@ -7,8 +7,10 @@ screen_size = (1600, 900)  # This variable sets the size of the screen
 frame_delay = 24  # Don't worry about this too much - it just ensures the game runs at a constant frame rate
 game_title = "PyGame Boilerplate"  # Change this to the name of your game
 
+background = Sprites.Background()
 
 player_sprites = pygame.sprite.RenderUpdates()  # This variable contains all player sprites
+player_sprites.add(Sprites.Player((0, 0)))
 
 enemy_sprites = pygame.sprite.RenderUpdates()  # This variable contains all the enemy sprites
 
@@ -22,6 +24,8 @@ def main():  # this function is the main game loop - everything that happens in 
     pygame.display.set_caption(game_title)  # This sets the screen caption
 
     while True: # Here is where all the game logic happens
+
+        screen.blit(background.image, background.rect)  # Draws the background before anything else
 
         player_sprites.draw(screen)  # Draws all the player sprites
 
