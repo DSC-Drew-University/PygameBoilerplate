@@ -1,5 +1,7 @@
 import pygame
 import sys
+from source import Sprites
+from source import Logic
 
 screen_size = (1600, 900)  # This variable sets the size of the screen
 frame_delay = 24  # Don't worry about this too much - it just ensures the game runs at a constant frame rate
