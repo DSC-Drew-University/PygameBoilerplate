@@ -1,4 +1,4 @@
-import pygamegit
+import pygame
 # Kenney.nl has tons of great textures for you to use - make sure to check it out!
 
 
