@@ -42,7 +42,6 @@ def main():  # this function is the main game loop - everything that happens in 
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
             player.process(event)
             # This processes any input that may have occurred.
             # Change the player process function to add your own functionality.
