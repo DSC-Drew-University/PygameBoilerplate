@@ -62,3 +62,27 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
 
+
+class Enemy(pygame.sprite.Sprite):  # You can use this class to create enemies
+
+    speed = 3  # This variable controls how many pixels the enemy will move in a single game step
+
+    def seek_player(self, player):  # This makes the enemy follow the player
+        target_x = player.rect.left
+        target_y = player.rect.top
+
+        if target_x > self.rect.left:
+            self.rect.left = self.rect.left + self.speed
+        elif target_x < self.rect.left:
+            self.rect.left = self.rect.left - self.speed
+
+        if target_y > self.rect.top:
+            self.rect.top = self.rect.top + self.speed
+        elif target_y < self.rect.top:
+            self.rect.top = self.rect.top - self.speed
+
+    def __init__(self, location):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load('source/snake.png')  # Change this to alter the skin of the enemies
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
