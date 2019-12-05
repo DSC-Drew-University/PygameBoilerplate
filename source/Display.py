@@ -1,5 +1,6 @@
 import pygame
 import sys
+from pygame.locals import *
 from source import Sprites
 from source import Logic
 
@@ -9,8 +10,7 @@ game_title = "PyGame Boilerplate"  # Change this to the name of your game
 
 background = Sprites.Background()
 
-player_sprites = pygame.sprite.RenderUpdates()  # This variable contains all player sprites
-player_sprites.add(Sprites.Player((0, 0)))
+player = (Sprites.Player((0, 0)))
 
 enemy_sprites = pygame.sprite.RenderUpdates()  # This variable contains all the enemy sprites
 
@@ -23,11 +23,13 @@ def main():  # this function is the main game loop - everything that happens in 
     screen = pygame.display.set_mode(screen_size)  # This sets the screen size
     pygame.display.set_caption(game_title)  # This sets the screen caption
 
-    while True: # Here is where all the game logic happens
+    while True:  # Here is where all the game logic happens
+
+        player.move()
 
         screen.blit(background.image, background.rect)  # Draws the background before anything else
 
-        player_sprites.draw(screen)  # Draws all the player sprites
+        screen.blit(player.image, player.rect)
 
         enemy_sprites.draw(screen)  # Draws all the enemy sprites
 
@@ -40,6 +42,10 @@ def main():  # this function is the main game loop - everything that happens in 
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
+            player.process(event)
+            # This processes any input that may have occurred.
+            # Change the player process function to add your own functionality.
 
 
 if __name__ == "__main__":  # This makes the code run, don't worry about it
