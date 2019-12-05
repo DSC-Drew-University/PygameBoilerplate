@@ -6,6 +6,7 @@ from pygame.locals import *
 # If you want to make your own sprites - head over to www.piskelapp.com
 # it's an amazing online tool for making pixel art
 
+
 class Background(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -15,7 +16,7 @@ class Background(pygame.sprite.Sprite):
 
 class Player(pygame.sprite.Sprite):
 
-
+    score = 0
 
     moving_left = False
     moving_right = False
@@ -86,5 +87,13 @@ class Enemy(pygame.sprite.Sprite):  # You can use this class to create enemies
     def __init__(self, location):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load('source/snake.png')  # Change this to alter the skin of the enemies
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
+
+
+class Seed(pygame.sprite.Sprite):
+    def __init__(self, location):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load('source/seed.png')
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
