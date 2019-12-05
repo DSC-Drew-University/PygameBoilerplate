@@ -6,7 +6,6 @@ from pygame.locals import *
 # If you want to make your own sprites - head over to www.piskelapp.com
 # it's an amazing online tool for making pixel art
 
-
 class Background(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
