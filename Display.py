@@ -1,6 +1,6 @@
 import pygame
 import sys
-from pygame.locals import *
+import random
 from source import Sprites
 from source import Logic
 
@@ -13,6 +13,10 @@ background = Sprites.Background()
 player = (Sprites.Player((0, 0)))
 
 enemy_sprites = pygame.sprite.RenderUpdates()  # This variable contains all the enemy sprites
+number_of_enemies = 2
+
+for i in range(number_of_enemies):
+    enemy_sprites.add(Sprites.Enemy((random.randint(0, screen_size[0]), random.randint(0, screen_size[1]))))
 
 neutral_sprites = pygame.sprite.RenderUpdates()  # This variable contains all neutral sprites
 
@@ -30,6 +34,9 @@ def main():  # this function is the main game loop - everything that happens in 
         screen.blit(background.image, background.rect)  # Draws the background before anything else
 
         screen.blit(player.image, player.rect)
+
+        for enemy in enemy_sprites:
+            enemy.seek_player(player)
 
         enemy_sprites.draw(screen)  # Draws all the enemy sprites
 
