@@ -15,5 +15,3 @@ def show_score(x, y, score_value):
     score = font.render("Score : " + str(score_value), True, (255, 255, 255))
     screen.blit(score, (x, y))
 
-# Moving your sprites
-#def move_Horizontal(object1_X, object1_Y, move):
