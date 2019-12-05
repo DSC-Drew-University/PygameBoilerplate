@@ -7,7 +7,8 @@ from source import Logic
 screen_size = (1600, 900)  # This variable sets the size of the screen
 frame_delay = 24  # Don't worry about this too much - it just ensures the game runs at a constant frame rate
 game_title = "PyGame Boilerplate"  # Change this to the name of your game
-
+pygame.font.init()
+font = pygame.font.Font('freesansbold.ttf', 32)
 background = Sprites.Background()
 
 player = (Sprites.Player((0, 0)))
@@ -30,11 +31,12 @@ def main():  # this function is the main game loop - everything that happens in 
     while True:  # Here is where all the game logic happens
 
         player.move()
-
+        
         screen.blit(background.image, background.rect)  # Draws the background before anything else
-
+        
         screen.blit(player.image, player.rect)
-
+        score = font.render("Score : " + str(5), True, (0, 0, 0))
+        screen.blit(score, (0, 0))
         for enemy in enemy_sprites:
             enemy.seek_player(player)
 
@@ -52,6 +54,7 @@ def main():  # this function is the main game loop - everything that happens in 
             player.process(event)
             # This processes any input that may have occurred.
             # Change the player process function to add your own functionality.
+
 
 
 if __name__ == "__main__":  # This makes the code run, don't worry about it
