@@ -15,6 +15,8 @@ class Background(pygame.sprite.Sprite):
 
 class Player(pygame.sprite.Sprite):
 
+
+
     moving_left = False
     moving_right = False
     moving_up = False
