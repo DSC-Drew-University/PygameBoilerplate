@@ -36,7 +36,7 @@ def main():  # this function is the main game loop - everything that happens in 
         if neutral_sprites.__len__() < number_of_seeds:  # This respawns seeds if there are too few
             neutral_sprites.add(Sprites.Seed((random.randint(0, screen_size[0]), random.randint(0, screen_size[1]))))
 
-        player.move()  # moves the player if appropriate
+        player.move(screen_size)  # moves the player if appropriate
 
         for seed in neutral_sprites:  # detects collisions and increases the player score
             if pygame.sprite.collide_rect(player, seed):
@@ -53,7 +53,7 @@ def main():  # this function is the main game loop - everything that happens in 
 
         enemy_sprites.draw(screen)  # Draws all the enemy sprites
         for enemy in enemy_sprites:
-            enemy.seek_player(player)
+            enemy.seek_player(player, screen_size)
             if pygame.sprite.collide_rect(player, enemy):
                 lose_message = font.render("You Died! :(", True, (255, 0, 0))
                 screen.blit(lose_message, (700, 450))

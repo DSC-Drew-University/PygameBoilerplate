@@ -17,7 +17,6 @@ class Background(pygame.sprite.Sprite):
 class Player(pygame.sprite.Sprite):
 
     score = 0
-
     moving_left = False
     moving_right = False
     moving_up = False
@@ -49,15 +48,19 @@ class Player(pygame.sprite.Sprite):
             if input_event.key == K_DOWN or input_event.key == ord('s'):
                 self.moving_down = False
 
-    def move(self):
+    def move(self, screen_size):
         if self.moving_left:
-            self.rect.left = self.rect.left - self.speed
+            if self.rect.left > 0:
+                self.rect.left = self.rect.left - self.speed
         if self.moving_right:
-            self.rect.left = self.rect.left + self.speed
+            if self.rect.left < screen_size[0]:
+                self.rect.left = self.rect.left + self.speed
         if self.moving_up:
-            self.rect.top = self.rect.top - self.speed
+            if self.rect.top > 0:
+                self.rect.top = self.rect.top - self.speed
         if self.moving_down:
-            self.rect.top = self.rect.top + self.speed
+            if self.rect.left < screen_size[1]:
+                self.rect.top = self.rect.top + self.speed
 
     def __init__(self, location):
         pygame.sprite.Sprite.__init__(self)
@@ -70,19 +73,23 @@ class Enemy(pygame.sprite.Sprite):  # You can use this class to create enemies
 
     speed = 3  # This variable controls how many pixels the enemy will move in a single game step
 
-    def seek_player(self, player):  # This makes the enemy follow the player
+    def seek_player(self, player, screen_size):  # This makes the enemy follow the player
         target_x = player.rect.left
         target_y = player.rect.top
 
         if target_x > self.rect.left:
-            self.rect.left = self.rect.left + self.speed
+            if self.rect.left < screen_size[0]:
+                self.rect.left = self.rect.left + self.speed
         elif target_x < self.rect.left:
-            self.rect.left = self.rect.left - self.speed
+             if self.rect.left > 0:
+                self.rect.left = self.rect.left - self.speed
 
         if target_y > self.rect.top:
-            self.rect.top = self.rect.top + self.speed
+            if self.rect.left < screen_size[1]:
+                self.rect.top = self.rect.top + self.speed
         elif target_y < self.rect.top:
-            self.rect.top = self.rect.top - self.speed
+            if self.rect.top > 0:
+                self.rect.top = self.rect.top - self.speed
 
     def __init__(self, location):
         pygame.sprite.Sprite.__init__(self)
